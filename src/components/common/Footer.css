@@ -1,0 +1,49 @@
+/* ── Footer ──────────────────────────────────────────────────── */
+.cc-footer { background: var(--mahogany); color: rgba(255,255,255,0.75); font-family: var(--font-body); }
+
+/* Trust Strip */
+.cc-ft-trust { background: var(--mahogany-mid); padding: 20px 0; border-bottom: 1px solid rgba(200,150,10,0.2); }
+.cc-ft-trust-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
+.cc-ft-trust-item { display: flex; align-items: center; gap: 12px; }
+.cc-ft-trust-icon { font-size: 26px; }
+.cc-ft-trust-title { font-size: 13px; font-weight: 700; color: #fff; }
+.cc-ft-trust-sub   { font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 2px; }
+
+/* Main Grid */
+.cc-ft-main { padding: 48px 0 36px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.cc-ft-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 32px; }
+
+.cc-ft-brand-col .cc-ft-logo {
+  font-family: var(--font-head);
+  font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 12px;
+}
+.cc-ft-brand-col .cc-ft-logo span { color: var(--gold); }
+.cc-ft-brand-col p { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.7; margin-bottom: 18px; max-width: 250px; }
+
+.cc-ft-socials { display: flex; flex-wrap: wrap; gap: 8px; }
+.cc-ft-social {
+  font-size: 11px; color: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.06); padding: 5px 10px;
+  border-radius: 4px; text-decoration: none;
+  transition: var(--ease);
+}
+.cc-ft-social:hover { background: rgba(200,68,10,0.3); color: #fff; text-decoration: none; }
+
+.cc-ft-col h4 { font-size: 12px; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; }
+.cc-ft-col a  { display: block; font-size: 13px; color: rgba(255,255,255,0.55); margin-bottom: 10px; text-decoration: none; transition: color var(--ease); }
+.cc-ft-col a:hover { color: #fff; }
+
+/* Bottom */
+.cc-ft-bottom { padding: 18px 0; }
+.cc-ft-bottom .cc-container { display: flex; justify-content: center; align-items: center; text-align: center; }
+.cc-ft-bottom p { font-size: 13px; color: rgba(255,255,255,0.4); margin: 0; }
+
+@media (max-width: 1024px) {
+  .cc-ft-trust-grid { grid-template-columns: repeat(2,1fr); }
+  .cc-ft-grid { grid-template-columns: repeat(3,1fr); }
+}
+@media (max-width: 640px) {
+  .cc-ft-trust-grid { grid-template-columns: 1fr; }
+  .cc-ft-grid { grid-template-columns: repeat(2,1fr); }
+  .cc-ft-bottom .cc-container { flex-direction: column; text-align: center; }
+}

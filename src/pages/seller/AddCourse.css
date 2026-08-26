@@ -1,0 +1,5 @@
+/* AddCourse uses the same design system as AddProduct.
+   Import the shared form styles and override only what's needed. */
+@import url('./AddProduct.css');
+
+/* Course-specific tweaks (if any) go here */

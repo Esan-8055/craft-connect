@@ -1,0 +1,86 @@
+/* ── Artisan Product Card ─────────────────────────────────────── */
+.cc-art-card {
+  background: var(--card-white);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  border: 1.5px solid var(--border-light);
+  cursor: pointer;
+  display: flex; flex-direction: column;
+  transition: box-shadow var(--ease), transform var(--ease);
+  font-family: var(--font-body);
+}
+.cc-art-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-5px); }
+
+/* Image */
+.cc-art-card-img-wrap { position: relative; aspect-ratio: 1; overflow: hidden; background: var(--parchment); }
+.cc-art-card-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.45s ease; }
+.cc-art-card:hover .cc-art-card-img { transform: scale(1.07); }
+
+.cc-art-disc-ribbon {
+  position: absolute; top: 10px; left: 0;
+  background: var(--saffron); color: #fff;
+  font-size: 11px; font-weight: 800;
+  padding: 4px 10px 4px 10px;
+  border-radius: 0 4px 4px 0;
+  letter-spacing: 0.2px;
+  box-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+}
+
+.cc-art-wish-btn {
+  position: absolute; top: 9px; right: 9px;
+  width: 32px; height: 32px; border-radius: 50%;
+  background: rgba(255,255,255,0.92);
+  border: none; font-size: 18px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: var(--shadow-sm);
+  color: var(--text-muted);
+  opacity: 0; transition: opacity var(--ease), transform var(--ease), color var(--ease);
+}
+.cc-art-card:hover .cc-art-wish-btn { opacity: 1; }
+.cc-art-wish-btn.active { opacity: 1; color: var(--saffron); }
+.cc-art-wish-btn:hover { transform: scale(1.15); }
+
+/* Body */
+.cc-art-card-body { padding: 14px; display: flex; flex-direction: column; gap: 5px; flex: 1; }
+
+.cc-art-category {
+  font-size: 10px; font-weight: 700;
+  color: var(--saffron);
+  text-transform: uppercase; letter-spacing: 0.8px;
+}
+
+.cc-art-name {
+  font-family: var(--font-head);
+  font-size: 14px; font-weight: 600;
+  color: var(--text-rich); line-height: 1.3;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+
+.cc-art-artisan { font-size: 11px; color: var(--text-muted); }
+
+/* Rating row */
+.cc-art-rating-row { display: flex; align-items: center; gap: 6px; margin-top: 3px; }
+.cc-art-count { font-size: 11px; color: var(--text-muted); }
+
+/* Price */
+.cc-art-price-row { display: flex; align-items: baseline; gap: 7px; margin-top: 3px; }
+.cc-art-price { font-size: 17px; font-weight: 800; color: var(--text-rich); }
+.cc-art-mrp  { font-size: 12px; color: var(--text-muted); text-decoration: line-through; }
+
+/* Delivery */
+.cc-art-delivery { font-size: 11px; color: var(--green); font-weight: 600; }
+
+/* Add to Bag Button */
+.cc-art-add-btn {
+  margin-top: auto;
+  padding: 10px;
+  background: var(--saffron-light);
+  color: var(--saffron);
+  border: 1.5px solid var(--saffron);
+  border-radius: var(--r-md);
+  font-size: 12px; font-weight: 700;
+  cursor: pointer; letter-spacing: 0.3px;
+  transition: background var(--ease), color var(--ease), transform var(--ease);
+}
+.cc-art-add-btn:hover { background: var(--saffron); color: #fff; transform: scale(1.02); }
+.cc-art-add-btn.added { background: var(--green); color: #fff; border-color: var(--green); cursor: default; }

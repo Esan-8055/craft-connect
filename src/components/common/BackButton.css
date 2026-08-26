@@ -1,0 +1,40 @@
+.cc-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--card-white, #ffffff);
+  border: 2px solid var(--saffron, #C8440A);
+  color: var(--saffron, #C8440A);
+  padding: 10px 24px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 14px rgba(200, 68, 10, 0.18);
+  font-family: var(--font-body, 'DM Sans', sans-serif);
+  line-height: 1;
+  letter-spacing: 0.3px;
+}
+
+.cc-back-btn .back-arrow {
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1;
+  transition: transform 0.25s ease;
+}
+
+.cc-back-btn:hover {
+  background: var(--saffron, #C8440A);
+  color: #ffffff;
+  transform: translateX(-4px) scale(1.03);
+  box-shadow: 0 6px 20px rgba(200, 68, 10, 0.32);
+}
+
+.cc-back-btn:hover .back-arrow {
+  transform: translateX(-4px);
+}
+
+.cc-back-btn:active {
+  transform: translateX(-2px) scale(0.98);
+}

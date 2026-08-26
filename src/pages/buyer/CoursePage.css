@@ -1,0 +1,383 @@
+.course-detail-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 24px;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: #1e293b;
+}
+
+.course-page-loader {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  color: #64748b;
+}
+
+.course-breadcrumb {
+  font-size: 13px;
+  color: #64748b;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.course-breadcrumb a {
+  color: #0f172a;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.course-breadcrumb .active {
+  color: #94a3b8;
+}
+
+/* Hero Grid */
+.course-hero-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 40px;
+  margin-bottom: 60px;
+}
+
+@media (max-width: 900px) {
+  .course-hero-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.course-hero-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.workshop-pill {
+  display: inline-block;
+  background: #fef3c7;
+  color: #92400e;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 20px;
+  align-self: flex-start;
+}
+
+.course-title {
+  font-size: 34px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.course-subtitle {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #475569;
+  margin: 0;
+}
+
+.course-stats-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.stat-badge {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 8px 14px;
+  font-size: 13px;
+  color: #334155;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.instructor-hero-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+
+.instructor-avatar {
+  width: 48px;
+  height: 48px;
+  background: #f1f5f9;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.instructor-meta .label {
+  font-size: 11px;
+  color: #64748b;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.instructor-meta h4 {
+  margin: 2px 0 2px 0;
+  font-size: 16px;
+  color: #0f172a;
+  font-weight: 700;
+}
+
+.instructor-meta p {
+  margin: 0;
+  font-size: 12px;
+  color: #64748b;
+}
+
+/* Video & Pricing Card */
+.course-video-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+}
+
+.video-thumbnail-container {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #0f172a;
+}
+
+.video-poster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.85;
+}
+
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  background: #ffffff;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s;
+}
+
+.play-button:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.play-icon {
+  font-size: 22px;
+  color: #0f172a;
+  margin-left: 3px;
+}
+
+.trailer-tag {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  background: rgba(15, 23, 42, 0.8);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 12px;
+  backdrop-filter: blur(4px);
+}
+
+.video-player-mock {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 14px;
+  background: #0f172a;
+}
+
+.pricing-card-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.course-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.course-price-row .price-tag {
+  font-size: 32px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.course-price-row .strike-price {
+  font-size: 16px;
+  text-decoration: line-through;
+  color: #94a3b8;
+}
+
+.course-price-row .discount-badge {
+  background: #fecdd3;
+  color: #9f1239;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+.enroll-btn {
+  background: #0f172a;
+  color: #ffffff;
+  border: none;
+  padding: 16px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.2);
+}
+
+.enroll-btn:hover {
+  background: #1e293b;
+  transform: translateY(-2px);
+}
+
+.perks-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 13px;
+  color: #475569;
+  font-weight: 500;
+}
+
+/* Curriculum Section */
+.curriculum-section {
+  border-top: 1px solid #e2e8f0;
+  padding-top: 50px;
+}
+
+.curriculum-section h2 {
+  font-size: 28px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 6px 0;
+}
+
+.section-sub {
+  color: #64748b;
+  margin: 0 0 30px 0;
+}
+
+.accordion-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.accordion-item {
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #ffffff;
+  transition: all 0.2s;
+}
+
+.accordion-item.open {
+  border-color: #0f172a;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+}
+
+.accordion-header {
+  padding: 18px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  background: #f8fafc;
+  user-select: none;
+}
+
+.module-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.module-icon {
+  font-size: 11px;
+  color: #64748b;
+}
+
+.module-title-wrap h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.module-duration {
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.accordion-body {
+  padding: 16px 20px 20px 44px;
+  background: #ffffff;
+  border-top: 1px solid #f1f5f9;
+}
+
+.accordion-body ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.accordion-body li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: #334155;
+}
+
+.play-mini {
+  font-size: 10px;
+  color: #64748b;
+}

@@ -1,0 +1,227 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Montserrat:wght@400;600;700&display=swap');
+
+.seller-container {
+  display: flex;
+  background-color: #fdfbf7; /* Cream background */
+  min-height: 100vh;
+}
+
+.add-product-main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+}
+
+.form-card-wrapper {
+  width: 100%;
+  max-width: 650px;
+  animation: fadeIn 0.8s ease-out;
+}
+
+/* Typography */
+.form-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #d35400; /* Terracotta */
+  font-weight: 700;
+  font-size: 0.8rem;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.serif-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  color: #4a3b32; /* Deep Brown */
+  margin: 0;
+}
+
+.serif-title i {
+  color: #d35400;
+}
+
+.form-header p {
+  color: #7f8c8d;
+  margin-top: 10px;
+}
+
+/* The Card */
+.listing-card {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(74, 59, 50, 0.08);
+  border: 1px solid rgba(211, 84, 0, 0.05);
+}
+
+.artisan-form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* Inputs */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-group label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #4a3b32;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.input-group input, 
+.input-group select, 
+.input-group textarea {
+  padding: 14px 18px;
+  border: 1.5px solid #ece0d1;
+  border-radius: 12px;
+  font-size: 1rem;
+  background-color: #faf9f6;
+  transition: all 0.3s ease;
+  color: #4a3b32;
+}
+
+.input-group input:focus, 
+.input-group textarea:focus {
+  outline: none;
+  border-color: #d35400;
+  background-color: #fff;
+  box-shadow: 0 0 0 4px rgba(211, 84, 0, 0.05);
+}
+
+.price-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.currency-symbol {
+  position: absolute;
+  left: 15px;
+  color: #d35400;
+  font-weight: bold;
+}
+
+.price-input-wrapper input {
+  padding-left: 35px;
+  width: 100%;
+}
+
+/* Custom Dropzone */
+.dropzone-label {
+  display: block;
+  width: 100%;
+  min-height: 180px;
+  border: 2px dashed #ece0d1;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  background-color: #faf9f6;
+}
+
+.dropzone-label:hover {
+  border-color: #d35400;
+  background-color: #fff8f4;
+}
+
+.dropzone-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  text-align: center;
+}
+
+.upload-icon { font-size: 2.5rem; margin-bottom: 10px; }
+.dropzone-content p { font-weight: 600; color: #4a3b32; margin: 0; }
+.dropzone-content small { color: #95a5a6; margin-top: 5px; }
+
+/* Image Preview */
+.preview-overlay {
+  position: relative;
+  width: 100%;
+  height: 200px;
+}
+
+.img-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.change-hint {
+  position: absolute;
+  inset: 0;
+  background: rgba(74, 59, 50, 0.6);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-weight: 600;
+}
+
+.preview-overlay:hover .change-hint {
+  opacity: 1;
+}
+
+/* Submit Button */
+.publish-btn {
+  background-color: #d35400;
+  color: #fff;
+  border: none;
+  padding: 18px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  margin-top: 10px;
+  box-shadow: 0 8px 20px rgba(211, 84, 0, 0.2);
+}
+
+.publish-btn:hover {
+  transform: scale(1.03);
+  background-color: #e67e22;
+  box-shadow: 0 12px 25px rgba(211, 84, 0, 0.3);
+}
+
+.form-footer {
+  text-align: center;
+  margin-top: 30px;
+  opacity: 0.6;
+  font-size: 0.85rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 600px) {
+  .form-row { grid-template-columns: 1fr; }
+  .serif-title { font-size: 2.2rem; }
+}

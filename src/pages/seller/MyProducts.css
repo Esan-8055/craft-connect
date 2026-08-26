@@ -1,0 +1,231 @@
+.inventory-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
+}
+
+.inventory-card {
+  background: white;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.inventory-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+/* Image wrapper with status badge */
+.inv-img-wrapper {
+  position: relative;
+  height: 190px;
+  overflow: hidden;
+}
+
+.inv-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.inv-status-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 4px 12px;
+  border-radius: 50px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  backdrop-filter: blur(6px);
+}
+
+.inv-status-badge.published {
+  background: rgba(39, 174, 96, 0.9);
+  color: white;
+}
+
+.inv-status-badge.draft {
+  background: rgba(255, 255, 255, 0.92);
+  color: #636e72;
+  border: 1px solid #dfe6e9;
+}
+
+/* Card info */
+.inv-info {
+  padding: 18px 20px 20px;
+}
+
+.inv-info h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  color: #2D3436;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.inv-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.inv-price {
+  color: #A0522D;
+  font-weight: 800;
+  font-size: 1rem;
+}
+
+.inv-stock {
+  color: #636e72;
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+
+/* Buttons */
+.inv-btns {
+  display: flex;
+  gap: 8px;
+}
+
+.publish-action-btn {
+  flex: 1;
+  padding: 9px 14px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.78rem;
+  cursor: pointer;
+  border: none;
+  background: #A0522D;
+  color: white;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.publish-action-btn:hover:not(:disabled) {
+  filter: brightness(1.15);
+  transform: translateY(-1px);
+}
+
+.unpublish-btn {
+  flex: 1;
+  padding: 9px 14px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.78rem;
+  cursor: pointer;
+  border: 1.5px solid #636e72;
+  background: transparent;
+  color: #636e72;
+  transition: all 0.3s;
+}
+
+.unpublish-btn:hover:not(:disabled) {
+  background: #636e72;
+  color: white;
+}
+
+.del-btn {
+  padding: 9px 14px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.78rem;
+  cursor: pointer;
+  border: 1.5px solid #fecaca;
+  background: transparent;
+  color: #e74c3c;
+  transition: all 0.3s;
+}
+
+.del-btn:hover:not(:disabled) {
+  background: #e74c3c;
+  color: white;
+  border-color: #e74c3c;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Summary text */
+.inv-summary {
+  color: #636e72;
+  font-size: 0.88rem;
+  margin-top: 4px;
+}
+
+/* Toast */
+.inv-toast {
+  padding: 12px 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  animation: slideIn 0.3s ease-out;
+}
+
+.inv-toast.success {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.inv-toast.error {
+  background: #fff5f5;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Loading & Empty */
+.inv-loading, .inv-empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: #636e72;
+}
+
+.inv-spinner {
+  width: 30px;
+  height: 30px;
+  border: 3px solid #e0d6ca;
+  border-top-color: #A0522D;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  margin: 0 auto 15px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Success/Error boxes for AddProduct */
+.form-success-box {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+  padding: 12px 18px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.form-error-box {
+  background: #fff5f5;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+  padding: 12px 18px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 0.88rem;
+  font-weight: 600;
+}

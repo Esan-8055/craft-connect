@@ -1,0 +1,94 @@
+.terracotta-sidebar {
+  width: 280px;
+  height: 100vh;
+  /* Deep Earthy Terracotta Background */
+  background-color: #A0522D; 
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+
+.sidebar-brand {
+  padding: 40px 30px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-brand h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  color: #FDFBF7; /* Cream White */
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.sidebar-brand h2 i {
+  color: #fce4cf; /* Soft highlight */
+  font-weight: 400;
+}
+
+.sidebar-menu {
+  padding: 30px 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex-grow: 1;
+}
+
+.s-link {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 14px 20px;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 12px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hover State */
+.s-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  transform: translateX(5px);
+}
+
+/* ACTIVE STATE: The "Premium" Look */
+.s-link.active {
+  background-color: #FDFBF7; /* Cream White background */
+  color: #A0522D !important; /* Terracotta text */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Style the icon when active */
+.s-link.active .s-icon {
+  filter: grayscale(0);
+}
+
+.s-icon {
+  font-size: 1.2rem;
+  filter: grayscale(1) brightness(2); /* Makes emojis look subtle/white */
+}
+
+.s-link.active .s-icon {
+  filter: none; /* Shows emoji color when active */
+}
+
+.sidebar-footer {
+  padding: 20px;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-footer p {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.5) !important;
+  font-weight: 700;
+}
