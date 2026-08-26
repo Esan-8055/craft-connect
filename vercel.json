@@ -1,7 +1,11 @@
 {
-  "buildCommand": "vite build",
-  "outputDirectory": "dist",
-  "framework": "vite",
+  "services": {
+    "web": {
+      "root": ".",
+      "buildCommand": "vite build",
+      "outputDirectory": "dist"
+    }
+  },
   "rewrites": [
     {
       "source": "/(.*)",
