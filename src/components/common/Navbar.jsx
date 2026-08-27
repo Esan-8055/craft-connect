@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useCart } from '../../context/CartContext';
-import PremiumModal from './PremiumModal';
 import './Navbar.css';
 
 const FEATURED_COURSES = [
@@ -34,7 +33,7 @@ const SELLER_CATS = [
 ];
 
 export default function Navbar() {
-  const { user, logout, isBuyer, isSeller, isPremium } = useAuth();
+  const { user, logout, isBuyer, isSeller } = useAuth();
   const { cartCount } = useCart();
   const navigate = useNavigate();
   const location = useLocation();
@@ -43,7 +42,6 @@ export default function Navbar() {
   const [userDrop, setUserDrop]   = useState(false);
   const [courseDrop, setCourseDrop] = useState(false);
   const [drawer, setDrawer]       = useState(false);
-  const [isPremiumModalOpen, setIsPremiumModalOpen] = useState(false);
   const [isMobile, setIsMobile]   = useState(window.innerWidth <= 768);
   const dropRef = useRef(null);
   const courseDropRef = useRef(null);
@@ -89,8 +87,11 @@ export default function Navbar() {
       {/* Top Bar */}
       <div className="cc-nav-top">
         <Link to="/" className="cc-brand">
-          <span className="cc-brand-name">Craft<span>Connect</span></span>
-          <span className="cc-brand-sub">India's Artisan Marketplace</span>
+          <img src="/logo.png" alt="CraftConnect Logo" className="cc-brand-logo" />
+          <div className="cc-brand-text">
+            <span className="cc-brand-name">Craft<span>Connect</span></span>
+            <span className="cc-brand-sub">India's Artisan Marketplace</span>
+          </div>
         </Link>
 
         {/* Search */}
@@ -105,16 +106,6 @@ export default function Navbar() {
 
         {/* Right Actions */}
         <div className="cc-nav-actions">
-          {/* Premium VIP Shortcut Button */}
-          <button 
-            className={`cc-nav-premium-btn ${isPremium ? 'is-active' : ''}`}
-            onClick={() => setIsPremiumModalOpen(true)}
-            title="CraftConnect VIP Premium Pass & Benefits"
-          >
-            <span className="crown-icon">👑</span>
-            <span className="premium-label">{isPremium ? 'VIP Active' : 'Premium VIP'}</span>
-          </button>
-
           {/* Offered Courses Dropdown */}
           <div className="cc-user-wrapper" ref={courseDropRef}>
             <button 
@@ -233,16 +224,34 @@ export default function Navbar() {
       <header className="cc-navbar">
         <div className="cc-mobile-nav">
           <button className="cc-mobile-btn" onClick={() => setDrawer(true)} style={{ fontSize: 22, color: '#fff' }}>☰</button>
-          <Link to="/" className="cc-mobile-brand">Craft<span>Connect</span></Link>
+          <Link to="/" className="cc-mobile-brand">
+            <img src="/logo.png" alt="CraftConnect Logo" className="cc-mobile-logo" />
+            <span>Craft<span>Connect</span></span>
+          </Link>
           <div className="cc-mobile-right">
+            <Link to="/" className="cc-mobile-btn" title="Home">
+              <span style={{ fontSize: 20 }}>🏠</span>
+            </Link>
             {isBuyer && (
-              <Link to="/cart" className="cc-mobile-btn" style={{ position: 'relative' }}>
-                <span style={{ fontSize: 22 }}>🛒</span>
+              <Link to="/cart" className="cc-mobile-btn" style={{ position: 'relative' }} title="Cart">
+                <span style={{ fontSize: 20 }}>🛒</span>
                 {cartCount > 0 && <span className="cc-nav-cart-badge">{cartCount}</span>}
               </Link>
             )}
           </div>
         </div>
+        {/* Category Strip for Mobile */}
+        <nav className="cc-cat-strip">
+          {cats.map(c => (
+            <Link 
+              key={c.path} 
+              to={c.path} 
+              className={`cc-cat-link ${isActiveCat(c.path) ? 'active' : ''} ${c.isHighlighted ? 'highlighted-cat' : ''}`}
+            >
+              <span className="cc-cat-icon">{c.icon}</span>{c.label}
+            </Link>
+          ))}
+        </nav>
       </header>
 
       {drawer && (
@@ -257,12 +266,12 @@ export default function Navbar() {
               )}
             </div>
 
+            <div className="cc-drawer-section-label">Navigation</div>
+            <Link to="/" className="cc-drawer-item"><span className="di-icon">🏠</span>Home</Link>
+
             {!user && (
               <>
                 <div className="cc-drawer-section-label">Account</div>
-                <button className="cc-drawer-item" onClick={() => { setIsPremiumModalOpen(true); setDrawer(false); }} style={{ color: '#FFD700', fontWeight: 700 }}>
-                  <span className="di-icon">👑</span>{isPremium ? 'VIP Premium Active' : 'Upgrade to Premium VIP'}
-                </button>
                 <Link to="/login"  className="cc-drawer-item"><span className="di-icon">🔑</span>Login</Link>
                 <Link to="/signup" className="cc-drawer-item"><span className="di-icon">📝</span>Sign Up</Link>
                 <div className="cc-drawer-sep" />
@@ -272,9 +281,6 @@ export default function Navbar() {
             {isBuyer && (
               <>
                 <div className="cc-drawer-section-label">Shop</div>
-                <button className="cc-drawer-item" onClick={() => { setIsPremiumModalOpen(true); setDrawer(false); }} style={{ color: '#FFD700', fontWeight: 700 }}>
-                  <span className="di-icon">👑</span>{isPremium ? 'VIP Premium Active' : 'Upgrade to Premium VIP'}
-                </button>
                 <Link to="/marketplace" className="cc-drawer-item"><span className="di-icon">🎨</span>All Crafts</Link>
                 <Link to="/courses"     className="cc-drawer-item"><span className="di-icon">🎓</span>Academy</Link>
                 <Link to="/cart"        className="cc-drawer-item"><span className="di-icon">🛒</span>Cart {cartCount > 0 && `(${cartCount})`}</Link>
@@ -298,12 +304,6 @@ export default function Navbar() {
           </div>
         </>
       )}
-
-      {/* Global Premium Benefits Modal */}
-      <PremiumModal 
-        isOpen={isPremiumModalOpen} 
-        onClose={() => setIsPremiumModalOpen(false)} 
-      />
     </>
   );
 }

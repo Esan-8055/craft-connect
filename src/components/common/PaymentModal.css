@@ -56,6 +56,24 @@
   text-align: center;
 }
 
+.pm-header-brand-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.pm-header-logo {
+  height: 38px;
+  width: 38px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid #FFD700;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
 .pm-secure-badge {
   display: inline-block;
   background: rgba(200, 150, 10, 0.2);
@@ -63,7 +81,7 @@
   font-size: 11px; font-weight: 700;
   padding: 4px 12px; border-radius: 20px;
   border: 1px solid rgba(200,150,10,0.35);
-  letter-spacing: 0.4px; margin-bottom: 12px;
+  letter-spacing: 0.4px; margin-bottom: 0;
 }
 
 .pm-title {
@@ -237,11 +255,12 @@
 
 .pm-qr-svg { display: block; }
 
-.pm-qr-brand {
-  position: absolute; bottom: 10px; right: 10px;
-  font-size: 8px; font-weight: 800;
-  color: #C8440A; opacity: 0.7;
-  font-family: 'Playfair Display', serif;
+.pm-qr-logo-img {
+  position: absolute; bottom: 8px; right: 8px;
+  width: 24px; height: 24px;
+  object-fit: cover; border-radius: 50%;
+  border: 1px solid #C8440A; background: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.15);
 }
 
 .pm-qr-note { font-size: 13px; color: #5C3D2E; text-align: center; max-width: 260px; line-height: 1.5; }

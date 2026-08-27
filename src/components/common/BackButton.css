@@ -38,3 +38,15 @@
 .cc-back-btn:active {
   transform: translateX(-2px) scale(0.98);
 }
+
+@media (max-width: 768px) {
+  .cc-back-btn {
+    padding: 8px 16px;
+    font-size: 13px;
+    box-shadow: 0 2px 8px rgba(200, 68, 10, 0.2);
+    flex-shrink: 0;
+  }
+  .cc-back-btn .back-arrow {
+    font-size: 16px;
+  }
+}

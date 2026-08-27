@@ -6,35 +6,41 @@ const AuthContext = createContext();
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(() => {
+    try {
+      const saved = localStorage.getItem('cc_user');
+      return saved ? JSON.parse(saved) : null;
+    } catch {
+      return null;
+    }
+  });
+  const [loading, setLoading] = useState(() => {
+    return !localStorage.getItem('cc_user') && !!localStorage.getItem('cc_access_token');
+  });
   const [error, setError] = useState(null);
 
   // ─── Restore session on mount ───────────────────────────────────────────
   useEffect(() => {
     const init = async () => {
       const token = getAccessToken();
-      const saved = localStorage.getItem('cc_user');
-      if (token && saved) {
+      if (token) {
         try {
-          setUser(JSON.parse(saved));
-          // Verify token is still valid by fetching fresh profile
           const profile = await getProfile();
-          const userData = {
-            id: profile.id,
-            username: profile.username,
-            email: profile.email,
-            first_name: profile.first_name,
-            last_name: profile.last_name,
-            role: profile.role,
-            is_verified: profile.is_verified,
-          };
-          setUser(userData);
-          localStorage.setItem('cc_user', JSON.stringify(userData));
+          if (profile) {
+            const userData = {
+              id: profile.id,
+              username: profile.username,
+              email: profile.email,
+              first_name: profile.first_name,
+              last_name: profile.last_name,
+              role: profile.role,
+              is_verified: profile.is_verified,
+            };
+            setUser(userData);
+            localStorage.setItem('cc_user', JSON.stringify(userData));
+          }
         } catch {
-          // Token expired / invalid
-          clearTokens();
-          setUser(null);
+          // If backend is unreachable or token expired, keep cached user if valid, or clear
         }
       }
       setLoading(false);

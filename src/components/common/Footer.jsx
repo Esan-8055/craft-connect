@@ -33,7 +33,10 @@ export default function Footer() {
           <div className="cc-ft-grid">
             {/* Brand */}
             <div className="cc-ft-brand-col">
-              <div className="cc-ft-logo">Craft<span>Connect</span></div>
+              <div className="cc-ft-logo-wrap">
+                <img src="/logo.png" alt="CraftConnect Logo" className="cc-ft-logo-img" />
+                <div className="cc-ft-logo">Craft<span>Connect</span></div>
+              </div>
               <p>Bridging India's master artisans with buyers who appreciate heritage and handcraft. Every purchase preserves a tradition.</p>
             </div>
 
@@ -58,24 +61,17 @@ export default function Footer() {
               <Link to="/my-learning">My Learning</Link>
             </div>
 
-            {/* Sell */}
-            <div className="cc-ft-col">
-              <h4>Become an Artisan</h4>
-              <Link to="/signup">Register to Sell</Link>
-              <Link to="/seller">Seller Dashboard</Link>
-              <Link to="/seller/add-product">List a Product</Link>
-              <Link to="/seller/add-course">Host a Course</Link>
-            </div>
-
-            {/* Help */}
-            <div className="cc-ft-col">
-              <h4>Help</h4>
-              <a href="#">Contact Support</a>
-              <a href="#">Track Your Order</a>
-              <a href="#">Return & Refund</a>
-              <a href="#">Payment Help</a>
-              <a href="#">Privacy Policy</a>
-              <a href="#">Terms of Service</a>
+            {/* Contact Info */}
+            <div className="cc-ft-col cc-ft-contact-col">
+              <h4>Contact Us</h4>
+              <div className="cc-ft-contact-item">
+                <span className="cc-ft-contact-icon">📧</span>
+                <a href="mailto:sritharsrithar1466@gmail.com">sritharsrithar1466@gmail.com</a>
+              </div>
+              <div className="cc-ft-contact-item">
+                <span className="cc-ft-contact-icon">📞</span>
+                <a href="tel:9629452001">+91 96294 52001</a>
+              </div>
             </div>
           </div>
         </div>

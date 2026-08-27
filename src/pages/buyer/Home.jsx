@@ -105,22 +105,25 @@ export default function Home() {
   }, [location.search]);
 
   const loadAllProducts = useCallback(async () => {
+    // 1. Instantly populate local seller & mock items (0ms load time)
+    const localSeller = JSON.parse(localStorage.getItem('cc_seller_products') || '[]');
+    const publishedSeller = localSeller.filter(p => p && p.is_published !== false);
+    const initialCombined = [...publishedSeller, ...MOCK.filter(m => !publishedSeller.some(p => p.id === m.id))];
+    setProducts(initialCombined);
+    setLoading(false);
+
+    // 2. Fetch fresh backend products in background
     try {
       const data = await apiGet('/products/').catch(() => null);
-      const backendItems = Array.isArray(data) ? data : (data?.results || []);
-      
-      const localSeller = JSON.parse(localStorage.getItem('cc_seller_products') || '[]');
-      const publishedSeller = localSeller.filter(p => p && p.is_published !== false);
-
-      const combined = [...publishedSeller, ...backendItems, ...MOCK.filter(m => !backendItems.some(b => b.id === m.id) && !publishedSeller.some(p => p.id === m.id))];
-      setProducts(combined);
+      if (data) {
+        const backendItems = Array.isArray(data) ? data : (data?.results || []);
+        if (backendItems.length > 0) {
+          const combined = [...publishedSeller, ...backendItems, ...MOCK.filter(m => !backendItems.some(b => b.id === m.id) && !publishedSeller.some(p => p.id === m.id))];
+          setProducts(combined);
+        }
+      }
     } catch {
-      const localSeller = JSON.parse(localStorage.getItem('cc_seller_products') || '[]');
-      const publishedSeller = localSeller.filter(p => p && p.is_published !== false);
-      const combined = [...publishedSeller, ...MOCK.filter(m => !publishedSeller.some(p => p.id === m.id))];
-      setProducts(combined);
-    } finally {
-      setLoading(false);
+      // Retains initialCombined
     }
   }, []);
 

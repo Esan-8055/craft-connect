@@ -37,11 +37,14 @@ export default function InvoiceModal({ isOpen, onClose, order }) {
         <div className="printable-invoice-paper">
           {/* Header */}
           <div className="invoice-paper-head">
-            <div>
-              <h1 className="invoice-brand-title">
-                Craft<span>Connect</span>
-              </h1>
-              <span className="invoice-sub-badge">Authentic Indian Artisan Marketplace</span>
+            <div className="invoice-brand-wrap">
+              <img src="/logo.png" alt="CraftConnect Logo" className="invoice-brand-logo" />
+              <div>
+                <h1 className="invoice-brand-title">
+                  Craft<span>Connect</span>
+                </h1>
+                <span className="invoice-sub-badge">Authentic Indian Artisan Marketplace</span>
+              </div>
             </div>
             <div className="invoice-meta-col">
               <div className="invoice-number-tag">{invoiceNumber}</div>

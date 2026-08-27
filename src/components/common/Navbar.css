@@ -21,8 +21,23 @@
 
 /* ─── Brand ───────────────────────────────────────────────────── */
 .cc-brand {
-  display: flex; flex-direction: column;
+  display: flex; align-items: center; gap: 10px;
   text-decoration: none; flex-shrink: 0;
+}
+.cc-brand-logo {
+  height: 44px; width: 44px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1.5px solid var(--gold);
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  transition: transform var(--ease);
+}
+.cc-brand:hover .cc-brand-logo {
+  transform: scale(1.05);
+}
+.cc-brand-text {
+  display: flex; flex-direction: column;
   gap: 1px;
 }
 .cc-brand-name {
@@ -252,19 +267,36 @@
 .cc-cat-icon { font-size: 15px; }
 
 /* ─── Mobile Navbar ───────────────────────────────────────────── */
+.cc-nav-spacer {
+  height: 120px;
+}
+@media (max-width: 768px) {
+  .cc-nav-spacer {
+    height: 116px;
+  }
+}
+
 .cc-mobile-nav {
   background: var(--mahogany);
   height: 56px;
   display: flex; align-items: center;
   justify-content: space-between;
-  padding: 0 16px;
+  padding: 0 14px;
 }
 .cc-mobile-brand {
+  display: flex; align-items: center; gap: 8px;
   font-family: var(--font-head);
-  font-size: 20px; font-weight: 800;
+  font-size: 18px; font-weight: 800;
   color: #fff; text-decoration: none;
 }
-.cc-mobile-brand span { color: var(--gold); }
+.cc-mobile-logo {
+  height: 34px; width: 34px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid var(--gold);
+  background: #fff;
+}
+.cc-mobile-brand span span { color: var(--gold); }
 .cc-mobile-right { display: flex; align-items: center; gap: 4px; }
 .cc-mobile-btn {
   width: 40px; height: 40px;
@@ -278,10 +310,11 @@
 /* ─── Mobile Drawer ───────────────────────────────────────────── */
 .cc-drawer {
   position: fixed; top: 0; left: 0; bottom: 0;
-  width: 290px; background: var(--card-white);
+  width: 290px; max-width: 82vw; background: var(--card-white);
   z-index: 1001; overflow-y: auto;
   display: flex; flex-direction: column;
   animation: drawerIn 0.25s ease;
+  box-shadow: 4px 0 25px rgba(0,0,0,0.3);
 }
 @keyframes drawerIn {
   from { transform: translateX(-290px); }

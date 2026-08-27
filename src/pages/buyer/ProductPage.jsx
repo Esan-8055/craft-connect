@@ -23,10 +23,29 @@ const ProductPage = () => {
 
   useEffect(() => {
     const fetchProduct = async () => {
-      setLoading(true);
+      // 1. Instantly check local seller products & mock data (0ms delay)
+      const localSeller = JSON.parse(localStorage.getItem('cc_seller_products') || '[]');
+      const foundLocal = localSeller.find(p => String(p.id) === String(id));
+      const foundMock = mockProducts.find(p => Number(p.id) === Number(id)) || mockProducts[0];
+      const initialProduct = foundLocal || foundMock;
+
+      if (initialProduct) {
+        setProduct({
+          ...initialProduct,
+          name: initialProduct.title || initialProduct.name,
+          price: Number(initialProduct.price || 999),
+          location: initialProduct.location || "Kanchipuram, Tamil Nadu",
+          stock: initialProduct.stock || 5,
+        });
+        setSelectedImage(initialProduct.image || initialProduct.thumbnail || "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&q=80&w=800");
+        setLoading(false);
+      } else {
+        setLoading(true);
+      }
+
+      // 2. Fetch fresh backend product details in background
       try {
-        // Try Django REST backend first
-        const data = await apiGet(`/products/${id}/`);
+        const data = await apiGet(`/products/${id}/`).catch(() => null);
         if (data) {
           setProduct({
             id: data.id,
@@ -42,20 +61,10 @@ const ProductPage = () => {
           });
           setSelectedImage(data.image_url || data.image || "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&q=80&w=800");
           setLoading(false);
-          return;
         }
       } catch {
-        // Fallback to local mock data
+        // Retains initialProduct
       }
-
-      const found = mockProducts.find(p => p.id === Number(id)) || mockProducts[0];
-      setProduct({
-        ...found,
-        location: "Kanchipuram, Tamil Nadu",
-        stock: 5
-      });
-      setSelectedImage(found.image);
-      setLoading(false);
     };
 
     fetchProduct();
@@ -113,7 +122,7 @@ const ProductPage = () => {
       )}
 
       {/* Breadcrumb Navigation */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 24 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 24, flexWrap: 'wrap' }}>
         <BackButton fallbackPath="/marketplace" />
         <nav className="product-breadcrumb" style={{ margin: 0 }}>
           <Link to="/marketplace">Marketplace</Link> / 

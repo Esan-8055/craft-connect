@@ -107,6 +107,21 @@
   margin-bottom: 24px;
 }
 
+.invoice-brand-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.invoice-brand-logo {
+  height: 48px;
+  width: 48px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1.5px solid #C8440A;
+  background: #fff;
+}
+
 .invoice-brand-title {
   font-family: 'Playfair Display', serif;
   font-size: 28px;

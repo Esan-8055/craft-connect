@@ -254,7 +254,10 @@ export default function PaymentModal({ isOpen, onClose, onSuccess, amount, order
             <button className="pm-close-btn" onClick={onClose} disabled={isProcessing} aria-label="Close">✕</button>
 
             <div className="pm-header">
-              <span className="pm-secure-badge">🔒 256-Bit Encrypted Razorpay Gateway</span>
+              <div className="pm-header-brand-row">
+                <img src="/logo.png" alt="CraftConnect Logo" className="pm-header-logo" />
+                <span className="pm-secure-badge">🔒 256-Bit Encrypted Razorpay Gateway</span>
+              </div>
               <h2 className="pm-title">Secure Checkout</h2>
               <div className="pm-amount-row">
                 <span>Total Payable</span>
@@ -352,7 +355,7 @@ export default function PaymentModal({ isOpen, onClose, onSuccess, amount, order
                         <rect x="44" y="56" width="10" height="10" fill="#1C0F06" />
                         <circle cx="50" cy="50" r="8" fill="#C8440A" />
                       </svg>
-                      <div className="pm-qr-brand">CC</div>
+                      <img src="/logo.png" alt="CraftConnect" className="pm-qr-logo-img" />
                     </div>
                     <p className="pm-qr-note">Scan with Google Pay, PhonePe, Paytm, or BHIM</p>
                     <div className="pm-upi-id-chip">UPI ID: <code>craftconnect@upi</code></div>

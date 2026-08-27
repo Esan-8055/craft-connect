@@ -81,6 +81,7 @@ const SignupPage = () => {
         {/* Left Panel - Branding */}
         <div className="auth-brand-panel">
           <div className="auth-brand-content">
+            <img src="/logo.png" alt="CraftConnect Logo" className="auth-brand-logo-img" />
             <span className="auth-eyebrow">Join the Community</span>
             <h1 className="auth-brand-title">Craft <i>Connect</i></h1>
             <p className="auth-brand-desc">

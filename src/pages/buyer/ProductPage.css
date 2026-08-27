@@ -392,6 +392,53 @@
 }
 
 @media (max-width: 768px) {
+  .product-detail-wrapper {
+    padding: 12px 14px 40px 14px;
+  }
+  .product-main-layout {
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+  .product-title {
+    font-size: 22px;
+  }
+  .price-box {
+    padding: 12px 16px;
+  }
+  .price-box .amount {
+    font-size: 26px;
+  }
+  .purchase-controls {
+    flex-direction: column;
+    width: 100%;
+  }
+  .quantity-selector {
+    justify-content: center;
+    width: 100%;
+  }
+  .add-bag-btn, .buy-upi-btn {
+    width: 100%;
+    min-width: unset;
+    padding: 14px;
+    font-size: 14px;
+  }
+  .guarantees-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 6px;
+  }
+  .guarantee-item {
+    padding: 8px 4px;
+    font-size: 10px;
+  }
+  .artisan-story-card {
+    flex-wrap: wrap;
+    padding: 14px;
+  }
+  .verified-seal {
+    margin-left: 0;
+    width: 100%;
+    text-align: center;
+  }
   .reviews-grid {
     grid-template-columns: 1fr;
   }

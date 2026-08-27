@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Footer from '../../components/common/Footer';
 import { useAuth } from '../../context/AuthContext';
-import PremiumModal from '../../components/common/PremiumModal';
 import './LandingPage.css';
 
 const SLIDES = [
@@ -81,10 +80,8 @@ const STATS = [
 
 export default function LandingPage() {
   const navigate = useNavigate();
-  const { isPremium } = useAuth();
   const [slide, setSlide] = useState(0);
   const [q, setQ] = useState('');
-  const [isPremiumModalOpen, setIsPremiumModalOpen] = useState(false);
 
   useEffect(() => {
     const t = setInterval(() => setSlide(s => (s + 1) % SLIDES.length), 4800);
@@ -219,40 +216,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ── Premium Customer Benefits Banner Section ───────────────── */}
-      <section className="lp-vip-section">
-        <div className="cc-container">
-          <div className="lp-vip-card">
-            <div className="lp-vip-ambient-glow" />
-            <div className="lp-vip-content">
-              <div className="lp-vip-text-block">
-                <div className="lp-vip-badge">
-                  <span className="crown">👑</span> CRAFTCONNECT VIP PASS
-                </div>
-                <h2 className="lp-vip-title">Elevate Your Heritage Experience</h2>
-                <p className="lp-vip-subtitle">
-                  Join CraftConnect Premium for 100% unlimited access to 80+ masterclass workshops, exclusive artisan discounts, and complimentary express delivery.
-                </p>
-                <div className="lp-vip-perks-row">
-                  <div className="lp-vip-perk-chip"><span>🎓</span> 80+ Masterclasses</div>
-                  <div className="lp-vip-perk-chip"><span>🏷️</span> Up to 30% Off</div>
-                  <div className="lp-vip-perk-chip"><span>🚚</span> Free Shipping</div>
-                  <div className="lp-vip-perk-chip"><span>🎁</span> Priority Drops</div>
-                </div>
-              </div>
-              <div className="lp-vip-action">
-                <button 
-                  className="lp-vip-btn"
-                  onClick={() => setIsPremiumModalOpen(true)}
-                >
-                  {isPremium ? '✨ View VIP Benefits' : '👑 Unlock Premium Pass — ₹499/yr'}
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* ── Artisan CTA ──────────────────────────────────────── */}
       <section className="lp-artisan-cta">
         <div className="cc-container">
@@ -270,11 +233,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
-      <PremiumModal 
-        isOpen={isPremiumModalOpen} 
-        onClose={() => setIsPremiumModalOpen(false)} 
-      />
 
       <Footer />
     </div>

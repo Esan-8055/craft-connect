@@ -46,6 +46,8 @@ export default function ProductCard({ product }) {
           src={image || fallback}
           alt={name}
           className="cc-art-card-img"
+          loading="lazy"
+          decoding="async"
           onError={e => { e.target.src = fallback; }}
         />
         {discount >= 5 && <span className="cc-art-disc-ribbon">{discount}% off</span>}

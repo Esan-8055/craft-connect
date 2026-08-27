@@ -4,8 +4,6 @@ import CourseCard from '../../components/marketplace/CourseCard';
 import Footer from '../../components/common/Footer';
 import BackButton from '../../components/common/BackButton';
 import { getPublishedCourses } from '../../services/api';
-import { useAuth } from '../../context/AuthContext';
-import PremiumModal from '../../components/common/PremiumModal';
 import './Courses.css';
 
 const CATS = ['All', 'Textiles', 'Pottery', 'Woodwork', 'Paintings', 'Bamboo', 'Jewelry'];
@@ -33,12 +31,10 @@ const normalizeCat = (catStr) => {
 
 export default function Courses() {
   const location = useLocation();
-  const { isPremium } = useAuth();
   const initialCat = new URLSearchParams(location.search).get('cat') || 'All';
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [cat, setCat] = useState(initialCat);
-  const [isPremiumModalOpen, setIsPremiumModalOpen] = useState(false);
 
   useEffect(() => {
     const urlCat = new URLSearchParams(location.search).get('cat') || 'All';
@@ -46,16 +42,23 @@ export default function Courses() {
   }, [location.search]);
 
   useEffect(() => {
+    // 1. Instantly populate courses from mock data (0ms load time)
+    setCourses(MOCK_COURSES);
+    setLoading(false);
+
+    // 2. Asynchronously fetch fresh backend courses in background
     (async () => {
       try {
-        const data = await getPublishedCourses();
-        const backendItems = Array.isArray(data) ? data : (data?.results || []);
-        const combined = [...backendItems, ...MOCK_COURSES.filter(m => !backendItems.some(b => b.id === m.id))];
-        setCourses(combined);
+        const data = await getPublishedCourses().catch(() => null);
+        if (data) {
+          const backendItems = Array.isArray(data) ? data : (data?.results || []);
+          if (backendItems.length > 0) {
+            const combined = [...backendItems, ...MOCK_COURSES.filter(m => !backendItems.some(b => b.id === m.id))];
+            setCourses(combined);
+          }
+        }
       } catch {
-        setCourses(MOCK_COURSES);
-      } finally {
-        setLoading(false);
+        // Retains MOCK_COURSES
       }
     })();
   }, []);
@@ -81,31 +84,13 @@ export default function Courses() {
         <div className="cc-container">
           <span className="cc-courses-eyebrow">The Artisan Academy</span>
           <h1 className="cc-courses-hero-title">Learn Traditional <em>Indian</em> Crafts</h1>
-          <p className="cc-courses-hero-desc">Study directly under national award-winning artisans. Masterclasses reserved exclusively for Premium VIP Members.</p>
+          <p className="cc-courses-hero-desc">Study directly under national award-winning artisans. Master traditional craft techniques through step-by-step masterclasses.</p>
           <div className="cc-courses-hero-stats">
             <span>📚 80+ Courses</span>
             <span>👩‍🎨 50+ Master Artisans</span>
             <span>👥 12,000+ Students</span>
             <span>🏆 Certificate on Completion</span>
           </div>
-        </div>
-      </div>
-
-      {/* Premium Customer Benefits Card */}
-      <div className="cc-container">
-        <div className="cc-premium-banner-card">
-          <div className="pbc-left">
-            <span className="pbc-badge">👑 CraftConnect Premium VIP</span>
-            <h3>Exclusive Premium Customer Benefits</h3>
-            <p>
-              {isPremium 
-                ? '✨ You have VIP Access! All 80+ Masterclasses, Exclusive Craft Discounts, & Free Delivery are unlocked.' 
-                : '🔒 Academy Masterclasses & Special Offers are exclusive to Premium VIP Customers. Unlock unlimited access today for ₹499/year!'}
-            </p>
-          </div>
-          <button className="pbc-btn" onClick={() => setIsPremiumModalOpen(true)}>
-            {isPremium ? '✨ View VIP Benefits' : '👑 Unlock Premium Access Pass →'}
-          </button>
         </div>
       </div>
 
@@ -137,11 +122,6 @@ export default function Courses() {
           </div>
         )}
       </div>
-
-      <PremiumModal 
-        isOpen={isPremiumModalOpen} 
-        onClose={() => setIsPremiumModalOpen(false)} 
-      />
 
       <Footer />
     </div>

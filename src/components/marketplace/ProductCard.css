@@ -40,6 +40,14 @@
 .cc-art-wish-btn.active { opacity: 1; color: var(--saffron); }
 .cc-art-wish-btn:hover { transform: scale(1.15); }
 
+@media (max-width: 768px) {
+  .cc-art-wish-btn { opacity: 1; }
+  .cc-art-card-body { padding: 10px; gap: 4px; }
+  .cc-art-name { font-size: 13px; }
+  .cc-art-price { font-size: 15px; }
+  .cc-art-add-btn { padding: 8px; font-size: 11px; }
+}
+
 /* Body */
 .cc-art-card-body { padding: 14px; display: flex; flex-direction: column; gap: 5px; flex: 1; }
 
