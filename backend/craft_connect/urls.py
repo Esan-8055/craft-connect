@@ -6,9 +6,24 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.http import JsonResponse
 from payments.views import create_order, verify_payment
 
+def home(request):
+    return JsonResponse({
+        "status": "ok",
+        "message": "Craft Connect Backend API is running successfully!",
+        "endpoints": [
+            "/api/products/",
+            "/api/courses/",
+            "/api/accounts/",
+            "/api/orders/",
+            "/admin/"
+        ]
+    })
+
 urlpatterns = [
+    path("", home, name="home"),
     path("admin/", admin.site.urls),
     path("api/create-order", create_order, name="api-create-order-no-slash"),
     path("api/create-order/", create_order, name="api-create-order"),
@@ -26,3 +41,4 @@ urlpatterns = [
 # Serve media files during development
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
