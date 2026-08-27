@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Sidebar from '../../components/dashboard/Sidebar';
 import BackButton from '../../components/common/BackButton';
 import { getMyCourses, publishCourse, unpublishCourse, deleteCourse } from '../../services/api';
+import './SellerDashboard.css';
 import './MyCourses.css';
 
 const SELLER_COURSES_CATALOG = [
@@ -99,11 +100,8 @@ const MyCourses = () => {
   return (
     <div className="seller-layout">
       <Sidebar />
-      <main className="seller-main">
-        <div style={{ marginBottom: 16 }}>
-          <BackButton fallbackPath="/seller" />
-        </div>
-        <header className="seller-header">
+      <main className="my-courses-main">
+        <header className="my-courses-header">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 16 }}>
             <div>
               <span className="pre-title">Academy Management</span>

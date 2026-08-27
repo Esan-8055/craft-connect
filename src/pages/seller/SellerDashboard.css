@@ -1,12 +1,38 @@
 .seller-layout {
   display: flex;
+  align-items: flex-start;
   background: #FDFBF7;
   min-height: 100vh;
+  padding-top: 120px; /* clears the fixed top navbar */
+}
+
+/* Used by some pages as .seller-container */
+.seller-container {
+  display: flex;
+  align-items: flex-start;
+  background: #FDFBF7;
+  min-height: 100vh;
+  padding-top: 120px;
 }
 
 .seller-main {
   flex: 1;
-  padding: 60px 5%;
+  padding: 48px 5%;
+  min-width: 0;
+}
+
+/* Variant class names used across seller pages */
+.earnings-main,
+.my-courses-main,
+.my-products-main,
+.seller-orders-main,
+.add-product-main {
+  flex: 1;
+  padding: 48px 5%;
+  min-width: 0;
+  background: #FDFBF7;
+  min-height: calc(100vh - 120px);
+  box-sizing: border-box;
 }
 
 .seller-header {

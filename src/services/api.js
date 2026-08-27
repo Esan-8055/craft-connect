@@ -152,7 +152,7 @@ export const apiPost = async (endpoint, body) => {
   return apiFetch(endpoint, {
     method: "POST",
     body: body instanceof FormData ? body : JSON.stringify(body),
-  });
+  }, 15000); // 15 seconds for mutations
 };
 
 export const apiPut = async (endpoint, body) => {
@@ -160,7 +160,7 @@ export const apiPut = async (endpoint, body) => {
   return apiFetch(endpoint, {
     method: "PUT",
     body: body instanceof FormData ? body : JSON.stringify(body),
-  });
+  }, 15000);
 };
 
 export const apiPatch = async (endpoint, body) => {
@@ -168,12 +168,12 @@ export const apiPatch = async (endpoint, body) => {
   return apiFetch(endpoint, {
     method: "PATCH",
     body: body instanceof FormData ? body : JSON.stringify(body),
-  });
+  }, 15000);
 };
 
 export const apiDelete = async (endpoint) => {
   clearApiCache();
-  return apiFetch(endpoint, { method: "DELETE" });
+  return apiFetch(endpoint, { method: "DELETE" }, 15000);
 };
 
 // ─── Auth APIs ──────────────────────────────────────────────────────────────

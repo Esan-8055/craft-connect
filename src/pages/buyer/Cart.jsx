@@ -7,13 +7,14 @@ import BackButton from '../../components/common/BackButton';
 import './Cart.css';
 
 export default function Cart() {
-  const { cartItems, removeFromCart, totalPrice, completeCheckout } = useCart();
+  const { cartItems, removeFromCart, updateQuantity, completeCheckout } = useCart();
   const navigate = useNavigate();
   const [isPayOpen, setIsPayOpen] = useState(false);
 
-  const shipping   = totalPrice > 500 ? 0 : 50;
-  const artisanFee = Math.round(totalPrice * 0.05);
-  const grandTotal = totalPrice + shipping + artisanFee;
+  const rawSubtotal = cartItems.reduce((sum, item) => sum + Number(item.price || 0) * (item.quantity || 1), 0);
+  const shipping   = rawSubtotal > 500 ? 0 : 50;
+  const artisanFee = Math.round(rawSubtotal * 0.05);
+  const grandTotal = rawSubtotal + shipping + artisanFee;
   const savings    = cartItems.reduce((acc, item) => {
     const mrp = item.mrp || Math.round(Number(item.price) * 1.38);
     return acc + (mrp - Number(item.price)) * (item.quantity || 1);
@@ -82,13 +83,29 @@ export default function Cart() {
                     <h3 className="cc-cart-item-name">{item.name || item.title}</h3>
                     <p className="cc-cart-item-artisan">by {item.artisanName || item.instructor || 'Verified Artisan'}</p>
                     <div className="cc-cart-item-price-row">
-                      <span className="cc-cart-item-price">₹{Number(item.price).toLocaleString('en-IN')}</span>
-                      {disc >= 5 && <span className="cc-cart-item-mrp">₹{mrp.toLocaleString('en-IN')}</span>}
+                      <span className="cc-cart-item-price">₹{(Number(item.price) * (item.quantity || 1)).toLocaleString('en-IN')}</span>
+                      {disc >= 5 && <span className="cc-cart-item-mrp">₹{(mrp * (item.quantity || 1)).toLocaleString('en-IN')}</span>}
                     </div>
                     <p className="cc-cart-delivery-note">🚚 Free delivery · Arrives in 3–5 days</p>
-                    <div className="cc-cart-item-actions">
+                    <div className="cc-cart-item-actions" style={{ display: 'flex', alignItems: 'center', gap: 12, marginTop: 10 }}>
+                      <div style={{ display: 'flex', alignItems: 'center', border: '1px solid #EFE6DC', borderRadius: 6, background: '#FFF' }}>
+                        <button 
+                          type="button" 
+                          onClick={() => updateQuantity(item.id, (item.quantity || 1) - 1)}
+                          style={{ border: 'none', background: 'none', padding: '4px 10px', cursor: 'pointer', fontWeight: 700, color: '#C8440A' }}
+                        >
+                          -
+                        </button>
+                        <span style={{ padding: '0 8px', fontSize: 13, fontWeight: 700 }}>{item.quantity || 1}</span>
+                        <button 
+                          type="button" 
+                          onClick={() => updateQuantity(item.id, (item.quantity || 1) + 1)}
+                          style={{ border: 'none', background: 'none', padding: '4px 10px', cursor: 'pointer', fontWeight: 700, color: '#C8440A' }}
+                        >
+                          +
+                        </button>
+                      </div>
                       <button className="cc-cart-remove-btn" onClick={() => removeFromCart(item.id)}>Remove</button>
-                      <button className="cc-cart-save-btn">Save for later</button>
                     </div>
                   </div>
                 </div>
@@ -108,8 +125,8 @@ export default function Cart() {
             <div className="cc-cart-summary-head">PRICE DETAILS</div>
             <div className="cc-cart-summary-body">
               <div className="cc-summary-row">
-                <span>Price ({cartItems.length} {cartItems.length === 1 ? 'item' : 'items'})</span>
-                <span>₹{totalPrice.toLocaleString('en-IN')}</span>
+                <span>Price ({cartItems.reduce((s, i) => s + (i.quantity || 1), 0)} items)</span>
+                <span>₹{rawSubtotal.toLocaleString('en-IN')}</span>
               </div>
               <div className="cc-summary-row">
                 <span>Discount</span>

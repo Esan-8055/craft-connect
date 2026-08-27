@@ -60,9 +60,6 @@ const SellerDashboard = () => {
     <div className="seller-layout">
       <Sidebar />
       <main className="seller-main">
-        <div style={{ marginBottom: 16 }}>
-          <BackButton fallbackPath="/marketplace" />
-        </div>
         <header className="seller-header">
           <span className="pre-title">Artisan Management</span>
           <h1>Welcome back, <i>{displayName}</i></h1>

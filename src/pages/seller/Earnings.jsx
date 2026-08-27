@@ -3,6 +3,7 @@ import Sidebar from '../../components/dashboard/Sidebar';
 import BackButton from '../../components/common/BackButton';
 import { readStoredOrders } from '../../context/CartContext';
 import { apiGet } from '../../services/api';
+import './SellerDashboard.css';
 
 export default function Earnings() {
   const [orders, setOrders] = useState([]);
@@ -63,12 +64,8 @@ export default function Earnings() {
   return (
     <div className="seller-layout">
       <Sidebar />
-      <main className="seller-main">
-        <div style={{ marginBottom: 16 }}>
-          <BackButton fallbackPath="/seller" />
-        </div>
-
-        <header className="seller-header">
+      <main className="earnings-main">
+        <header className="earnings-header">
           <span className="pre-title">Artisan Studio Finance</span>
           <h1>My <i>Earnings</i></h1>
           <p>Revenue summary from your craft sales and course enrollments.</p>

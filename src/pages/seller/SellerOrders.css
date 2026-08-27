@@ -1,11 +1,5 @@
 /* ─── SELLER ORDERS STYLES ─────────────────────────────────────────────── */
-.seller-orders-main {
-  flex: 1;
-  padding: 32px;
-  background: var(--bg-cream, #FDFBF7);
-  min-height: 100vh;
-  box-sizing: border-box;
-}
+/* Layout handled by shared seller-layout in SellerDashboard.css */
 
 .orders-header {
   margin-bottom: 28px;

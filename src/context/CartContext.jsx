@@ -168,11 +168,23 @@ export const CartProvider = ({ children }) => {
   }, [refreshOrders]);
 
   const addToCart = (item) => setCartItems(prev => {
-    if (prev.some(i => i.id === item.id)) return prev;
-    return [...prev, item];
+    const existingIndex = prev.findIndex(i => String(i.id) === String(item.id));
+    if (existingIndex > -1) {
+      const updated = [...prev];
+      const existing = updated[existingIndex];
+      const addQty = item.quantity || 1;
+      updated[existingIndex] = { ...existing, quantity: (existing.quantity || 1) + addQty };
+      return updated;
+    }
+    return [...prev, { ...item, quantity: item.quantity || 1 }];
   });
 
-  const removeFromCart = (id) => setCartItems(prev => prev.filter(i => i.id !== id));
+  const updateQuantity = (id, newQty) => setCartItems(prev => {
+    if (newQty <= 0) return prev.filter(i => String(i.id) !== String(id));
+    return prev.map(i => String(i.id) === String(id) ? { ...i, quantity: newQty } : i);
+  });
+
+  const removeFromCart = (id) => setCartItems(prev => prev.filter(i => String(i.id) !== String(id)));
 
   const completeCheckout = async (paymentResult = null, directItems = null) => {
     // Support direct item array (e.g. Buy Now) or fallback to cartItems
@@ -224,7 +236,7 @@ export const CartProvider = ({ children }) => {
         productTitle:    item.title  || item.name        || 'Craft Product',
         productImage:    item.image  || item.thumbnail   || 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=400',
         quantity:        item.quantity || 1,
-        amount:          Number(item.price || 0),
+        amount:          Number(item.price || 0) * (item.quantity || 1),
         date:            orderDate,
         status:          'pending',
         trackingNumber:  '',
@@ -269,8 +281,8 @@ export const CartProvider = ({ children }) => {
 
   return (
     <CartContext.Provider value={{
-      cartItems, addToCart, removeFromCart,
-      totalPrice, cartCount: cartItems.length,
+      cartItems, addToCart, removeFromCart, updateQuantity,
+      totalPrice, cartCount: cartItems.reduce((sum, i) => sum + (i.quantity || 1), 0),
       myOrders, myLearning, completeCheckout,
       loadingOrders, refreshOrders
     }}>

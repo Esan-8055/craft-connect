@@ -1,25 +1,28 @@
 .terracotta-sidebar {
-  width: 280px;
-  height: 100vh;
+  width: 240px;
+  min-width: 240px;
+  height: calc(100vh - 120px);
   /* Deep Earthy Terracotta Background */
-  background-color: #A0522D; 
+  background-color: #A0522D;
   display: flex;
   flex-direction: column;
   position: sticky;
-  top: 0;
+  top: 120px;
+  align-self: flex-start;
   box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
-  z-index: 100;
+  z-index: 10;
+  overflow-y: auto;
 }
 
 .sidebar-brand {
-  padding: 40px 30px;
+  padding: 24px 20px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .sidebar-brand h2 {
   font-family: 'Playfair Display', serif;
-  font-size: 1.6rem;
-  color: #FDFBF7; /* Cream White */
+  font-size: 1.3rem;
+  color: #FDFBF7;
   margin: 0;
   letter-spacing: 1px;
 }
@@ -30,25 +33,27 @@
 }
 
 .sidebar-menu {
-  padding: 30px 15px;
+  padding: 16px 12px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 6px;
   flex-grow: 1;
+  overflow-y: auto;
 }
 
 .s-link {
   display: flex;
   align-items: center;
-  gap: 15px;
-  padding: 14px 20px;
+  gap: 12px;
+  padding: 11px 16px;
   text-decoration: none;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.85);
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 600;
-  border-radius: 12px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 10px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
 }
 
 /* Hover State */

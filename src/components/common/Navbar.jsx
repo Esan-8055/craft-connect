@@ -171,7 +171,11 @@ export default function Navbar() {
                     </>}
                     {isSeller && <>
                       <Link to="/seller"          className="cc-dd-item" onClick={() => setUserDrop(false)}><span className="dd-icon">📊</span>Dashboard</Link>
+                      <Link to="/seller/orders"   className="cc-dd-item" onClick={() => setUserDrop(false)}><span className="dd-icon">📦</span>Orders Received</Link>
                       <Link to="/seller/products" className="cc-dd-item" onClick={() => setUserDrop(false)}><span className="dd-icon">🛍️</span>My Products</Link>
+                      <Link to="/seller/courses"  className="cc-dd-item" onClick={() => setUserDrop(false)}><span className="dd-icon">🎓</span>My Courses</Link>
+                      <Link to="/seller/earnings" className="cc-dd-item" onClick={() => setUserDrop(false)}><span className="dd-icon">💰</span>My Earnings</Link>
+                      <Link to="/seller/settings" className="cc-dd-item" onClick={() => setUserDrop(false)}><span className="dd-icon">⚙️</span>Studio Settings</Link>
                     </>}
                     <div className="cc-dd-sep" />
                     <button className="cc-dd-item logout" onClick={handleLogout}><span className="dd-icon">🚪</span>Logout</button>
@@ -179,8 +183,8 @@ export default function Navbar() {
                 )}
               </div>
 
-              {/* Cart (buyers only) */}
-              {isBuyer && (
+              {/* Cart (buyers & guests) */}
+              {!isSeller && (
                 <Link to="/cart" className="cc-nav-action">
                   <span className="nav-icon">🛒</span>
                   <span className="nav-label">Cart</span>
@@ -292,10 +296,15 @@ export default function Navbar() {
 
             {isSeller && (
               <>
-                <div className="cc-drawer-section-label">Seller</div>
-                <Link to="/seller"             className="cc-drawer-item"><span className="di-icon">📊</span>Dashboard</Link>
-                <Link to="/seller/products"    className="cc-drawer-item"><span className="di-icon">🛍️</span>My Products</Link>
-                <Link to="/seller/add-product" className="cc-drawer-item"><span className="di-icon">➕</span>Add Product</Link>
+                <div className="cc-drawer-section-label">Seller Studio</div>
+                <Link to="/seller"             className="cc-drawer-item" onClick={() => setDrawer(false)}><span className="di-icon">📊</span>Dashboard</Link>
+                <Link to="/seller/orders"      className="cc-drawer-item" onClick={() => setDrawer(false)}><span className="di-icon">📦</span>Orders Received</Link>
+                <Link to="/seller/products"    className="cc-drawer-item" onClick={() => setDrawer(false)}><span className="di-icon">🛍️</span>My Products</Link>
+                <Link to="/seller/add-product" className="cc-drawer-item" onClick={() => setDrawer(false)}><span className="di-icon">➕</span>Add Product</Link>
+                <Link to="/seller/courses"     className="cc-drawer-item" onClick={() => setDrawer(false)}><span className="di-icon">🎓</span>My Courses</Link>
+                <Link to="/seller/add-course"  className="cc-drawer-item" onClick={() => setDrawer(false)}><span className="di-icon">📚</span>Add Course</Link>
+                <Link to="/seller/earnings"    className="cc-drawer-item" onClick={() => setDrawer(false)}><span className="di-icon">💰</span>My Earnings</Link>
+                <Link to="/seller/settings"    className="cc-drawer-item" onClick={() => setDrawer(false)}><span className="di-icon">⚙️</span>Studio Settings</Link>
                 <div className="cc-drawer-sep" />
               </>
             )}

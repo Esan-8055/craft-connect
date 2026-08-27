@@ -59,7 +59,7 @@ const MyLearning = () => {
                 <span>{course.progress || 0}% Complete</span>
               </div>
               
-              <Link to="/classroom" className="resume-link">
+              <Link to="/classroom" state={{ course }} className="resume-link">
                 {course.progress > 0 ? 'Resume Lesson' : 'Start Course'}
               </Link>
             </div>

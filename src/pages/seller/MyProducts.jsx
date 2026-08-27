@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Sidebar from '../../components/dashboard/Sidebar';
 import BackButton from '../../components/common/BackButton';
 import { apiGet, apiPost, apiDelete } from '../../services/api';
+import './SellerDashboard.css';
 import './MyProducts.css';
 
 const SELLER_PRODUCTS_CATALOG = [
@@ -145,12 +146,8 @@ const MyProducts = () => {
   return (
     <div className="seller-layout">
       <Sidebar />
-      <main className="seller-main">
-        <div style={{ marginBottom: 16 }}>
-          <BackButton fallbackPath="/seller" />
-        </div>
-
-        <header className="seller-header">
+      <main className="my-products-main">
+        <header className="my-products-header">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 16 }}>
             <div>
               <span className="pre-title">Artisan Inventory</span>

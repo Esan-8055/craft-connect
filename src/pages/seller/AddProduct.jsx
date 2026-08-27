@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Sidebar from '../../components/dashboard/Sidebar';
 import BackButton from '../../components/common/BackButton';
 import { apiPost } from '../../services/api';
+import './SellerDashboard.css';
 import './AddProduct.css';
 
 const CATEGORIES = [
@@ -132,9 +133,6 @@ const AddProduct = () => {
     <div className="seller-container">
       <Sidebar />
       <main className="add-product-main">
-        <div style={{ marginBottom: 16 }}>
-          <BackButton fallbackPath="/seller/products" />
-        </div>
         <div className="form-card-wrapper">
           
           <header className="form-header">

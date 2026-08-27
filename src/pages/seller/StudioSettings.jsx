@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import Sidebar from '../../components/dashboard/Sidebar';
 import BackButton from '../../components/common/BackButton';
 import { useAuth } from '../../context/AuthContext';
+import './SellerDashboard.css';
 import './AddProduct.css'; // Shared form styling
+
 
 const StudioSettings = () => {
   const { user } = useAuth();
@@ -31,9 +33,6 @@ const StudioSettings = () => {
     <div className="seller-container">
       <Sidebar />
       <main className="add-product-main">
-        <div style={{ marginBottom: 16 }}>
-          <BackButton fallbackPath="/seller" />
-        </div>
         <div className="form-card-wrapper">
           <header className="form-header">
             <span className="eyebrow">Studio Profile &amp; Settings</span>

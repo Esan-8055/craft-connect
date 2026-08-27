@@ -1,23 +1,27 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import BackButton from '../../components/common/BackButton';
 import './Classroom.css';
 
 const Classroom = () => {
-  // 1. Hardcoded Course Data
+  const location = useLocation();
+  const courseParam = location.state?.course;
+
+  const defaultTitle = courseParam?.title || courseParam?.name || "Pottery Basics: Wheel Throwing";
+  const defaultInstructor = courseParam?.instructor || courseParam?.artisanName || "Ramesh Kumbhar";
+
   const courseContent = {
-    title: "Pottery Basics: Wheel Throwing",
-    instructor: "Ramesh Kumbhar",
+    title: defaultTitle,
+    instructor: defaultInstructor,
     chapters: [
-      { id: 1, title: "Introduction to Clay Types", videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" },
-      { id: 2, title: "Preparing the Wheel", videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" },
-      { id: 3, title: "Centering the Clay", videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" },
-      { id: 4, title: "Pulling the Walls", videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" },
-      { id: 5, title: "Final Shaping and Trimming", videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" },
+      { id: 1, title: `Introduction to ${defaultTitle} & Tools`, videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" },
+      { id: 2, title: "Preparing Raw Materials & Craft Workspace", videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" },
+      { id: 3, title: "Core Masterclass Techniques", videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" },
+      { id: 4, title: "Intricate Heritage Patterns & Detailing", videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" },
+      { id: 5, title: "Final Finishing, Curing & Packaging", videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" },
     ]
   };
 
-  // 2. State to track current lesson
   const [currentLesson, setCurrentLesson] = useState(courseContent.chapters[0]);
   const [completedLessons, setCompletedLessons] = useState([]);
 

@@ -5,6 +5,7 @@ import InvoiceModal from '../../components/common/InvoiceModal';
 import { readStoredOrders, writeStoredOrders } from '../../context/CartContext';
 import { apiGet, apiPatch } from '../../services/api';
 import { socket } from '../../services/socket';
+import './SellerDashboard.css';
 import './SellerOrders.css';
 
 export default function SellerOrders() {
@@ -147,9 +148,6 @@ export default function SellerOrders() {
             order={selectedInvoiceOrder}
           />
         )}
-        <div style={{ marginBottom: 16 }}>
-          <BackButton fallbackPath="/seller" />
-        </div>
 
         <header className="orders-header">
           <span className="eyebrow">Artisan Studio Portal</span>

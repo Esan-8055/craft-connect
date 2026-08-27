@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Sidebar from '../../components/dashboard/Sidebar';
 import BackButton from '../../components/common/BackButton';
 import { createCourse } from '../../services/api';
+import './SellerDashboard.css';
 import './AddCourse.css';
 
 const CATEGORIES = [
@@ -123,9 +124,6 @@ const AddCourse = () => {
     <div className="seller-container">
       <Sidebar />
       <main className="add-product-main">
-        <div style={{ marginBottom: 16 }}>
-          <BackButton fallbackPath="/seller/courses" />
-        </div>
         <div className="form-card-wrapper">
 
           <header className="form-header">
